@@ -1,0 +1,17 @@
+{
+  "name": "be",
+  "version": "1.0.0",
+  "description": "learn be nodejs-express",
+  "main": "server.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.mjs",
+    "start": "node server.mjs",
+    "build": "tsc",
+  },
+  "author": "Quang Huy",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
