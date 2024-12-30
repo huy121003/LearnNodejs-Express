@@ -46,3 +46,6 @@ input {
   margin: 10px;
   padding: 10px;
 }
+.d_none{
+  display: none;
+}
