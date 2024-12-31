@@ -4,16 +4,16 @@ const {
   getUserById,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
 } = require("../services/CRUDService");
-
+const User = require("../models/User");
 const getHomepage = async (req, res) => {
-  let rows = await getAllUser();
+  let rows = await User.find({});
   return res.render("home.ejs", { users: rows });
 };
 const getEditPage = async (req, res) => {
   let id = req.params.id;
-  let user = await getUserById(id);
+  let user = await User.findById(id).exec();
   return res.render("edit.ejs", { user });
 };
 const getCreateUser = (req, res) => {
@@ -21,21 +21,22 @@ const getCreateUser = (req, res) => {
 };
 
 const postCreateUser = async (req, res) => {
-  console.log(req.body);
   let { email, name, city } = req.body;
+  await User.create({ email, name, city });
 
-  let [results, fields] = await createUser(email, name, city);
-  res.send("Create user successfully!");
+  // let [results, fields] = await createUser(email, name, city);
+  res.redirect("/");
 };
 const patchUpdateUser = async (req, res) => {
   let { email, name, city, id } = req.body;
-  let [results, fields] = await updateUser(email, name, city, id);
-  res.send("Update user successfully!");
+  await User.updateOne({ _id: id }, { email, name, city }).exec();
+  res.redirect("/");
 };
 const deleteUserById = async (req, res) => {
   let id = req.params.id;
-  let [results, fields] = await deleteUser(id);
-  res.send("Delete user successfully!");
+  let respresp = await User.deleteOne({ _id: id });
+  console.log("êf", respresp);
+  res.redirect("/");
 };
 module.exports = {
   getHomepage,

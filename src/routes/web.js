@@ -15,6 +15,6 @@ router.get("/create", getCreateUser);
 router.get("/user/:id", getEditPage);
 router.post("/create-user", postCreateUser);
 router.post("/update/:id", patchUpdateUser);
-router.post("/delete/:id", deleteUserById);
+router.get("/delete/:id", deleteUserById);
 
 module.exports = router;

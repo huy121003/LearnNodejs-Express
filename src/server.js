@@ -14,7 +14,15 @@ app.use(express.json());
 configViewEngine(app);
 //khai bao cac routes
 app.use("/", webRoutes);
-//test connection
-app.listen(port, hostname, () => {
-  console.log(`Example app listening on port http://${hostname}:${port}`);
-});
+
+//connect to database
+(async () => {
+  try {
+    await connection();
+    app.listen(port, hostname, () => {
+      console.log(`Backend app listening on port http://${hostname}:${port}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+})();
