@@ -35,7 +35,6 @@ const patchUpdateUser = async (req, res) => {
 const deleteUserById = async (req, res) => {
   let id = req.params.id;
   let respresp = await User.deleteOne({ _id: id });
-  console.log("êf", respresp);
   res.redirect("/");
 };
 module.exports = {
